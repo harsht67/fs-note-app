@@ -1,0 +1,34 @@
+.SearchBar {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @media screen and (min-width: 1200px) {
+        padding: 0.5em 0.75em;
+        background-color: #363739;
+    }
+
+    .SearchBar__icon {
+        display: none;
+        font-size: 1.5em;
+
+        @media screen and (min-width: 1200px) {
+            display: initial;
+        }
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        background: none;
+        color: inherit;
+
+        @media screen and (min-width: 1200px) {
+            padding: 0.5em;
+        }
+    }
+
+}

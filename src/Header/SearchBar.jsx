@@ -10,7 +10,7 @@ function SearchBar() {
 
             <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search your notes"
             />
 
         </article>

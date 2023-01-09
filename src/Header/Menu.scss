@@ -1,0 +1,62 @@
+.Menu {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(#000, 0.25);
+
+    .Menu__container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 80%;
+        background-color: #202124;
+        color: #fff;
+    }
+
+    section:not(:last-child) {
+        border-block-end: 1px solid #670067;
+    }
+
+    section {
+        padding: 1em;
+    }
+
+    .Menu__title {
+        font-size: 1.25em;
+        font-weight: 400;
+        margin-block-end: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .Menu__subtitle {
+        font-size: 0.8em;
+        font-weight: 400;
+        margin-block-end: 1.25rem;
+    }
+
+    .icons {
+        font-size: 1.5em;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            font-size: 0.95em;
+
+            &:not(:last-child) {
+                margin-block-end: 1.25rem;
+            }
+
+        }
+
+    }
+
+}

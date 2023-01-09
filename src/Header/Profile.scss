@@ -1,0 +1,11 @@
+.Profile {
+
+    .Profile__btn {
+        font-size: 1.25em;
+
+        @media screen and (min-width: 1200px) {
+            font-size: 2em;
+        }
+    }
+
+}

@@ -1,0 +1,15 @@
+.Header {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em 1em;
+    border-radius: 40px;
+    background-color: #363739;
+    color: #e2e2e2;
+    margin: 0.5em;
+
+    @media screen and (min-width: 1200px) {
+        background: none;
+        gap: 10rem;
+    }
+}
