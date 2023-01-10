@@ -1,15 +1,12 @@
-.Note {
+.SmallNote {
     border-radius: 1rem;
     padding: 1rem;
     color: rgb(224, 224, 224);
+    cursor: pointer;
 
-    .Note__title {
+    .SmallNote__title {
         font-size: 1.1em;
         font-weight: 500;
-    }
-
-    .Note__body {
-        font-size: 1em;
     }
 
 }

@@ -1,6 +1,6 @@
 import "./Main.scss";
-import NewNote from "./NewNote";
-import Notes from "./Notes";
+import NewNote from "../Notes/NewNote";
+import Notes from "../Notes/Notes";
 
 function Main() {
     return (
