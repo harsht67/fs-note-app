@@ -1,0 +1,9 @@
+.Main {
+    width: 100%;
+    padding: 1rem;
+
+    @media screen and (min-width: 1200px) {
+        padding: 1rem 10rem;
+    }
+
+}

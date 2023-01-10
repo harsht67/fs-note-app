@@ -6,7 +6,8 @@
 
     @media screen and (min-width: 1200px) {
         padding: 0.5em 0.75em;
-        background-color: #363739;
+        // background-color: #363739;
+        background-color: #525356;
     }
 
     .SearchBar__icon {
@@ -15,6 +16,7 @@
 
         @media screen and (min-width: 1200px) {
             display: initial;
+            margin-inline: 0.5em;
         }
     }
 
@@ -22,7 +24,7 @@
         width: 100%;
         border: none;
         outline: none;
-        font-size: 1em;
+        font-size: 1.1em;
         background: none;
         color: inherit;
 

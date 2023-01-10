@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function Header() {
 
-    const [menu, setMenu] = useState(true);
+    const [menu, setMenu] = useState(false);
 
     const toggleMenu = () => {
         setMenu(prev => !prev);

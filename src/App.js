@@ -1,5 +1,7 @@
 import './App.scss';
 import Header from './Header/Header';
+import Main from './Main';
+import SideMenu from './SideMenu';
 
 function App() {
   return (
@@ -7,9 +9,13 @@ function App() {
 
       <Header/>
 
-      {/* Side menu */}
+      <div className="App-flex">
+      
+        <SideMenu/>
 
-      {/* Main - notes */}
+        <Main/>
+      
+      </div>
 
     </div>
   );

@@ -1,0 +1,33 @@
+.Notes {
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+
+    @media screen and (min-width: 1200px) {
+        margin-block-start: 2.5rem;
+    }
+
+    .Notes__container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+
+        @media screen and (min-width: 1200px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+    }
+
+    .Notes__title {
+        text-transform: capitalize;
+        font-size: 0.8em;
+        color: #bebebe;
+        margin-block-end: 0.5rem;
+
+        @media screen and (min-width: 1200px) {
+            text-transform: uppercase;
+        }
+
+    }
+
+}
