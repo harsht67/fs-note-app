@@ -17,67 +17,71 @@ function Note(props) {
     }
 
     return (
-        <article 
-            className="Note"
-            style={{backgroundColor:color}}
-        >
+        <article className="Note">
 
-            <header className="Note__header" >
+            <div 
+                className="Note__container"
+                style={{backgroundColor:color}}
+            >
 
-                <BiLeftArrowAlt 
-                    className="icons back-btn"
-                    onClick={toggleNote}
+                <header className="Note__header" >
+
+                    <BiLeftArrowAlt 
+                        className="icons back-btn"
+                        onClick={toggleNote}
+                    />
+
+                    {
+                        pinned 
+                        ? 
+                            <BsPinFill
+                                className="icons pin-btn"
+                            />
+                        : 
+                            <BsPin 
+                                className="icons pin-btn"
+                            />
+                    }
+
+                </header>
+
+                <input 
+                    className="Note__title"
+                    value={title}
                 />
 
-                {
-                    pinned 
-                    ? 
-                        <BsPinFill
-                            className="icons pin-btn"
+                <textarea 
+                    className="Note__body"
+                    value={body}
+                />
+
+                <footer className="Note__footer">
+
+                    <section>
+
+                        <VscSymbolColor
+                            className="icons color-icon"
                         />
-                    : 
-                        <BsPin 
-                            className="icons pin-btn"
+
+                        <RiDeleteBinLine 
+                            className="icons delete-icon"
                         />
-                }
 
-            </header>
+                        <RiInboxArchiveLine
+                            className="icons archive-icon"
+                        />
 
-            <input 
-                className="Note__title"
-                value={title}
-            />
+                    </section>
 
-            <textarea 
-                className="Note__body"
-                value={body}
-            />
+                    <section className="Note__edited">
 
-            <footer className="Note__footer">
+                        Edited {last_edited}
 
-                <section>
+                    </section>
 
-                    <VscSymbolColor
-                        className="icons color-icon"
-                    />
+                </footer>
 
-                    <RiDeleteBinLine 
-                        className="icons delete-icon"
-                    />
-
-                    <RiInboxArchiveLine
-                        className="icons archive-icon"
-                    />
-
-                </section>
-
-                <section className="Note__edited">
-
-                    Edited {last_edited}
-
-                </section>
-
-            </footer>
+            </div>
 
         </article>
     );
