@@ -1,11 +1,13 @@
 import "./Notes.scss";
 import SmallNote from "./SmallNote";
-import notes from "../data";
-
-import { useState } from "react";
 import Note from "./Note";
 
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 function Notes() {
+
+    const notes = useSelector(state => state.notes.entities);
 
     const [note, setNote] = useState({
         active: false,
