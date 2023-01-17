@@ -52,6 +52,12 @@
         outline: none;
     }
 
+    .Note__body, .Note__title {
+        &::placeholder {
+            color: inherit;
+        }
+    }
+
     .Note__title {
         font-size: 1.25em;
     }
@@ -63,9 +69,18 @@
     }
 
     .Note__footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
+        .Note__footer1 {
+            // border: 1px solid red;
+            display: flex;
+            justify-content: flex-end;
+            margin-block-end: 1rem;
+        }
+
+        .Note__footer2 {
+            display: flex;
+            justify-content: space-between;
+        }
 
         .icons {
             margin-inline-end: 1em;
@@ -74,6 +89,10 @@
         .Note__edited {
             font-size: 0.85em;
             color: #c1c1c1;
+        }
+
+        .Note__save {
+            cursor: pointer;
         }
 
     }

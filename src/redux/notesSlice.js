@@ -55,13 +55,45 @@ const notesSlice = createSlice({
     name: "notes",
     initialState,
     reducers: {
-        noteAdded(state, action) {},
+        noteAdded(state, action) {
+            let flag = false;
+            const newNote = action.payload;
+
+            // new note is updated
+            state.entities = state.entities.map(note => {
+                if(note.id === newNote.id) {
+                    flag = true;
+                    return newNote;
+                }
+                else {
+                    return note;
+                }
+            })
+
+            // new note is added 
+            if(!flag) {
+                state.entities = [
+                    ...state.entities,
+                    newNote
+                ]
+            }
+
+        },
         noteDeleted(state, action) {
             const id = action.payload;
 
             state.entities = state.entities.filter(note => note.id!=id);
         },
-        noteUpdated(state, action) {},
+        noteUpdated(state, action) {
+            const newNote = action.payload;
+
+            state.entities = state.entities.map(note => {
+                if(note.id === newNote.id) {
+                    return newNote;
+                }
+                return note;
+            })
+        },
         notePinned(state, action) {
             const id = action.payload;
 
@@ -78,6 +110,6 @@ const notesSlice = createSlice({
     }
 });
 
-export const { noteDeleted, notePinned } = notesSlice.actions;
+export const { noteDeleted, notePinned, noteUpdated, noteAdded } = notesSlice.actions;
 
 export default notesSlice.reducer;

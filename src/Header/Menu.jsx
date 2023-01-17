@@ -9,7 +9,7 @@ const labels = ["Book", "Coding", "Money"];
 
 function Menu(props) {
     return (
-        <article className="Menu">
+        <nav className="Menu">
 
             <div className="Menu__container">
 
@@ -72,7 +72,7 @@ function Menu(props) {
 
                         <li>
                             <RiDeleteBinLine className="icons"/>
-                            <span>Delete</span>
+                            <span>Trash</span>
                         </li>
 
                         <li>
@@ -91,7 +91,7 @@ function Menu(props) {
 
             </div>
 
-        </article>
+        </nav>
     );
 }
 

@@ -1,11 +1,14 @@
 import "./Note.scss";
-import { noteDeleted, notePinned } from "../redux/notesSlice";
+import { noteAdded, noteDeleted, notePinned, noteUpdated } from "../redux/notesSlice";
 
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import { VscSymbolColor } from "react-icons/vsc";
 import { RiInboxArchiveLine, RiDeleteBinLine } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function Note(props) {
 
@@ -14,8 +17,23 @@ function Note(props) {
 
     const dispatch = useDispatch();
 
-    // extracting a note from all notes based on id 
-    const note = notes.filter(note => note.id==props.id);
+    const [note, setNote] = useState(null);
+
+    useEffect(() => {
+        const temp = props.newNote 
+                    ? {
+                        id: props.id,
+                        title: "",
+                        body: "",
+                        last_edited: "",
+                        color: "grey",
+                        pinned: false,
+                        label: ""
+                    }
+                    : notes.filter(note => note.id==props.id)[0];
+
+        setNote(temp);
+    }, [])
     
     // open/close note 
     const toggleNote = () => {
@@ -28,85 +46,144 @@ function Note(props) {
         toggleNote();
 
         // then delete the note
-        dispatch(noteDeleted(id));
+        dispatch(noteDeleted(note.id));
     }
     
-    // change note pinned status
-    const changeNoteStatus = () => {
-        dispatch(notePinned(id));
+    // save changes made to note
+    const saveNote = () => {
+
+        const date = new Date();
+
+        const day = date.getDate();
+        const month = MONTHS[date.getMonth()];
+        
+        const newNote = {
+            ...note,
+            last_edited: day+" "+month,
+        }
+
+        props.newNote 
+            ? dispatch(noteAdded(newNote))
+            : dispatch(noteUpdated(newNote));
     }
 
-    const { id, title, body, label, color, pinned, last_edited } = note[0];
+    // change note pinned status
+    const changeNoteStatus = () => {
+        setNote(prev => ({
+            ...prev,
+            pinned: !prev.pinned
+        }));
+        // dispatch(notePinned(note.id));
+    }
+
+    // handle changes made to the note 
+    const changeHandler = (e) => {
+        const { name, value } = e.target;
+
+        setNote(prev => (
+            {
+                ...prev,
+                [name]: value,
+            }
+        ));
+    }
+
+    // const { id, title, body, label, color, pinned, last_edited } = note;
 
     return (
         <article className="Note">
 
-            <div 
-                className="Note__container"
-                style={{backgroundColor:color}}
-            >
+            {note &&
+                <div 
+                    className="Note__container"
+                    style={{backgroundColor: note.color}}
+                >
 
-                <header className="Note__header" >
+                    <header className="Note__header" >
 
-                    <BiLeftArrowAlt 
-                        className="icons back-btn"
-                        onClick={toggleNote}
+                        <BiLeftArrowAlt 
+                            className="icons back-btn"
+                            onClick={toggleNote}
+                        />
+
+                        {
+                            note.pinned 
+                            ? 
+                                <BsPinFill
+                                    className="icons pin-btn"
+                                    onClick={changeNoteStatus}
+                                />
+                            : 
+                                <BsPin 
+                                    className="icons pin-btn"
+                                    onClick={changeNoteStatus}
+                                />
+                        }
+
+                    </header>
+
+                    <input 
+                        className="Note__title"
+                        name="title"
+                        value={note.title}
+                        onChange={changeHandler}
+                        placeholder="Title"
                     />
 
-                    {
-                        pinned 
-                        ? 
-                            <BsPinFill
-                                className="icons pin-btn"
-                                onClick={changeNoteStatus}
-                            />
-                        : 
-                            <BsPin 
-                                className="icons pin-btn"
-                                onClick={changeNoteStatus}
-                            />
-                    }
+                    <textarea 
+                        className="Note__body"
+                        name="body"
+                        value={note.body}
+                        onChange={changeHandler}
+                        placeholder="Lorem ispum..."
+                    />
 
-                </header>
+                    <footer className="Note__footer">
 
-                <input 
-                    className="Note__title"
-                    value={title}
-                />
+                        <section className="Note__footer1">
+                        
+                            <div className="Note__edited">
 
-                <textarea 
-                    className="Note__body"
-                    value={body}
-                />
+                                {note.last_edited &&
+                                    <span>Edited {note.last_edited}</span>
+                                }
 
-                <footer className="Note__footer">
+                            </div>
 
-                    <section>
+                        </section>
 
-                        <VscSymbolColor
-                            className="icons color-icon"
-                        />
+                        <section className="Note__footer2">
 
-                        <RiDeleteBinLine 
-                            className="icons delete-icon"
-                            onClick={deleteNote}
-                        />
+                            <section>
 
-                        <RiInboxArchiveLine
-                            className="icons archive-icon"
-                        />
+                                <VscSymbolColor
+                                    className="icons color-icon"
+                                />
 
-                    </section>
+                                <RiDeleteBinLine 
+                                    className="icons delete-icon"
+                                    onClick={deleteNote}
+                                />
 
-                    <section className="Note__edited">
+                                <RiInboxArchiveLine
+                                    className="icons archive-icon"
+                                />
 
-                        Edited {last_edited}
+                            </section>
 
-                    </section>
+                            <span 
+                                className="Note__save"
+                                onClick={saveNote}
+                            >
+                                Save
+                            </span>
 
-                </footer>
+                        </section>
 
-            </div>
+                    </footer>
+
+                </div>
+            }
 
         </article>
     );

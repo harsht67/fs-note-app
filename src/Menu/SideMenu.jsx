@@ -8,7 +8,7 @@ const labels = ["Book", "Coding", "Money"];
 
 function SideMenu() {
     return (
-        <aside className="SideMenu">
+        <nav className="SideMenu">
 
             <ul>
 
@@ -33,12 +33,12 @@ function SideMenu() {
 
                 <li>
                     <RiDeleteBinLine className="icons" />
-                    <span>Delete</span>
+                    <span>Trash</span>
                 </li>
 
             </ul>
 
-        </aside>
+        </nav>
     );
 }
 
